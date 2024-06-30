@@ -11,9 +11,10 @@ interface ICardMusic {
   name: string;
   artist: string;
   listeners: string;
+  addFavorite: () => void;
 }
 
-const CardMusic = ({url, name, artist, listeners}: ICardMusic) => {
+const CardMusic = ({url, name, artist, listeners, addFavorite}: ICardMusic) => {
   return (
     <Pressable style={styles.container}>
       <View style={styles.containerInfo}>
@@ -32,6 +33,7 @@ const CardMusic = ({url, name, artist, listeners}: ICardMusic) => {
         nameIcon={'play'}
         size={30}
         color={Colors.black}
+        action={addFavorite}
       />
     </Pressable>
   );

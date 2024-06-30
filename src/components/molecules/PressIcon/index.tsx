@@ -7,11 +7,12 @@ interface IPressIcon {
   nameIcon: string;
   size: number;
   color: string;
+  action: () => void;
 }
 
-const PressIcon = ({containerStyle, nameIcon, size, color}: IPressIcon) => {
+const PressIcon = ({containerStyle, nameIcon, size, color, action}: IPressIcon) => {
   return (
-    <Pressable style={containerStyle}>
+    <Pressable style={containerStyle} onPress={action}>
       <IconComponent name={nameIcon} size={size} color={color} />
     </Pressable>
   );
