@@ -1,3 +1,8 @@
+export interface INavigation {
+  navigate(page: string, params?: any): void;
+  goBack(): void;
+}
+
 export interface ICardMusic {
   url: string;
 }

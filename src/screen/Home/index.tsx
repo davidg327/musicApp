@@ -10,9 +10,14 @@ import {
 import Storage from '../../helpers/localStorage';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks.ts';
 import {Colors} from '../../utils/Colors.ts';
+import {INavigation} from '../../utils/Interface.ts';
 import styles from './styles.ts';
 
-const HomeScreen = () => {
+interface IHomeScreen {
+  navigation: INavigation;
+}
+
+const HomeScreen = ({navigation}: IHomeScreen) => {
   const dispatch = useAppDispatch();
 
   const {countrySelect} = useAppSelector(state => state.country);
@@ -58,7 +63,7 @@ const HomeScreen = () => {
       {getTopTracksRequesting && topTracks.length === 0 && (
         <LoadingComponent size={'large'} color={Colors.white} />
       )}
-      {getTopTracksSuccess && <HomeTemplate />}
+      {getTopTracksSuccess && <HomeTemplate navigation={navigation} />}
     </SafeAreaView>
   );
 };

@@ -9,8 +9,8 @@ interface IFlatListComponent {
   empty: React.ReactComponentElement<any>;
   contentStyle?: ViewStyle;
   activeIndex?: boolean;
-  action: () => void;
-  renderFooter: React.ReactComponentElement<any> | null;
+  action?: () => void;
+  renderFooter?: React.ReactComponentElement<any> | null;
 }
 
 const FlatListComponent = ({

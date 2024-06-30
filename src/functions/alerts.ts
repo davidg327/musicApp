@@ -1,15 +1,9 @@
-import { Alert } from "react-native";
+import {Alert} from 'react-native';
 
-export function alerts(
-  title: string,
-  message: string,
-) {
+export function alerts(title: string, message: string) {
   try {
-    Alert.alert(
-      title,
-      message,
-    );
+    Alert.alert(title, message);
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 }
