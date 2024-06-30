@@ -1,13 +1,13 @@
 import React from 'react';
 import {View} from 'react-native';
 import TextComponent from '../../atoms/TextComponent';
-import ImageComponent from "../../atoms/ImageComponent";
+import ImageComponent from '../../atoms/ImageComponent';
 import LoadingComponent from '../../atoms/LoadingComponent';
 import FlatListComponent from '../../atoms/FlatListComponent';
 import CardMusic from '../../organisms/CardMusic';
-import {addFavorite} from "../../../state/favorite/reducer.ts";
+import {addFavorite} from '../../../state/favorite/reducer.ts';
 import {getTopTracks} from '../../../state/track/reducer.ts';
-import { alerts } from "../../../functions/alerts.ts";
+import {alerts} from '../../../functions/alerts.ts';
 import {useAppDispatch, useAppSelector} from '../../../hooks/hooks.ts';
 import {Colors} from '../../../utils/Colors.ts';
 import {ITracks} from '../../../utils/Interface.ts';
@@ -15,14 +15,20 @@ import styles from './styles.ts';
 
 interface IHomeTemplate {}
 
-const Item = ({item, addFavorite}: {item: ITracks, addFavorite: () => void}) => {
+const Item = ({
+  item,
+  addFavoriteTrack,
+}: {
+  item: ITracks;
+  addFavoriteTrack: () => void;
+}) => {
   return (
     <CardMusic
       url={item.image[0]['#text']}
       name={item.name}
       artist={item.artist.name}
       listeners={item.listeners}
-      addFavorite={addFavorite}
+      addFavorite={addFavoriteTrack}
     />
   );
 };
@@ -40,10 +46,12 @@ const HomeTemplate = ({}: IHomeTemplate) => {
   };
 
   const addTrackToFavorite = (values: ITracks) => {
-    let favoriteExists = favorites.find(favorite => favorite.mbid === values.mbid);
-    if(favoriteExists?.mbid) {
+    let favoriteExists = favorites.find(
+      favorite => favorite.mbid === values.mbid,
+    );
+    if (favoriteExists?.mbid) {
       alerts('!Espera¡', 'Esta canción ya esta en tus favoritos');
-    }else {
+    } else {
       alerts('!Que bueno¡', 'Agregada a favoritos');
       dispatch(addFavorite(values));
     }
@@ -59,18 +67,18 @@ const HomeTemplate = ({}: IHomeTemplate) => {
         <ImageComponent
           styles={styles.image}
           resize={'cover'}
-          url={'https://definicion.de/wp-content/uploads/2019/07/perfil-de-usuario.png'}
+          url={
+            'https://definicion.de/wp-content/uploads/2019/07/perfil-de-usuario.png'
+          }
         />
       </View>
       <FlatListComponent
         scroll={true}
         list={topTracks}
         activeIndex={true}
-        renderItem={({item}: {item: ITracks}) =>
-          <Item
-            item={item}
-            addFavorite={() => addTrackToFavorite(item)}
-          />}
+        renderItem={({item}: {item: ITracks}) => (
+          <Item item={item} addFavoriteTrack={() => addTrackToFavorite(item)} />
+        )}
         empty={
           <TextComponent
             styles={styles.textEmpty}

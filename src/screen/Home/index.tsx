@@ -3,8 +3,11 @@ import {SafeAreaView} from 'react-native';
 import LoadingComponent from '../../components/atoms/LoadingComponent';
 import HomeTemplate from '../../components/templates/Home';
 import {getTopTracks} from '../../state/track/reducer.ts';
-import {addFavoritesCache, cleanFavorite} from "../../state/favorite/reducer.ts";
-import Storage from "../../helpers/localStorage";
+import {
+  addFavoritesCache,
+  cleanFavorite,
+} from '../../state/favorite/reducer.ts';
+import Storage from '../../helpers/localStorage';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks.ts';
 import {Colors} from '../../utils/Colors.ts';
 import styles from './styles.ts';
@@ -18,16 +21,16 @@ const HomeScreen = () => {
   const {activeFavorite, favorites} = useAppSelector(state => state.favorite);
 
   const getFavorites = async () => {
-   let favorites = await Storage.getItem('@favorite_music');
-   if(favorites !== null){
-     dispatch(addFavoritesCache(favorites));
-   }
+    let favoritesCache = await Storage.getItem('@favorite_music');
+    if (favoritesCache !== null) {
+      dispatch(addFavoritesCache(favoritesCache));
+    }
   };
 
   const addFavoriteCache = () => {
     Storage.storeData('@favorite_music', favorites);
     dispatch(cleanFavorite());
-  }
+  };
 
   useEffect(() => {
     if (!getTopTracksSuccess) {
@@ -40,7 +43,7 @@ const HomeScreen = () => {
   }, []);
 
   useEffect(() => {
-    if(activeFavorite){
+    if (activeFavorite) {
       addFavoriteCache();
     }
   }, [activeFavorite]);

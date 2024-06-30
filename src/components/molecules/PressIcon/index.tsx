@@ -10,7 +10,13 @@ interface IPressIcon {
   action: () => void;
 }
 
-const PressIcon = ({containerStyle, nameIcon, size, color, action}: IPressIcon) => {
+const PressIcon = ({
+  containerStyle,
+  nameIcon,
+  size,
+  color,
+  action,
+}: IPressIcon) => {
   return (
     <Pressable style={containerStyle} onPress={action}>
       <IconComponent name={nameIcon} size={size} color={color} />
