@@ -3,6 +3,7 @@ import {ScrollView, View} from 'react-native';
 import TextComponent from '../../../atoms/TextComponent';
 import ImageComponent from '../../../atoms/ImageComponent';
 import PressIcon from '../../../molecules/PressIcon';
+import SlideTrack from '../../../molecules/SlideTrack';
 import {useAppSelector} from '../../../../hooks/hooks.ts';
 import {Colors} from '../../../../utils/Colors.ts';
 import {INavigation} from '../../../../utils/Interface.ts';
@@ -37,6 +38,7 @@ const DetailTemplate = ({navigation}: IDetailTemplate) => {
         <TextComponent styles={styles.textDescription} text={'Descripción'} />
         <TextComponent styles={styles.description} text={track.wiki.content} />
       </ScrollView>
+      <SlideTrack />
     </View>
   );
 };
