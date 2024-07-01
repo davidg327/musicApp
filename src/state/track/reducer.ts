@@ -1,4 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
+import {ITrack} from '../../utils/Interface.ts';
 
 const initialState = {
   getTopTracksRequesting: false,
@@ -7,6 +8,10 @@ const initialState = {
   topTracks: [],
   page: 0,
   more: false,
+  detailTrackRequesting: false,
+  detailTrackSuccess: false,
+  detailTrackError: '',
+  track: {} as ITrack,
 };
 
 export const trackSlice = createSlice({
@@ -30,10 +35,30 @@ export const trackSlice = createSlice({
       state.getTopTracksRequesting = false;
       state.getTopTracksError = action.payload;
     },
+    detailTrack(state, action) {
+      state.detailTrackRequesting = true;
+      state.detailTrackSuccess = false;
+      state.track = {} as ITrack;
+    },
+    detailTrackSuccess(state, action) {
+      state.detailTrackRequesting = false;
+      state.detailTrackSuccess = true;
+      state.track = action.payload;
+    },
+    detailTrackError(state, action) {
+      state.detailTrackRequesting = false;
+      state.detailTrackError = action.payload;
+    },
   },
 });
 
-export const {getTopTracks, getTopTracksSuccess, getTopTracksError} =
-  trackSlice.actions;
+export const {
+  getTopTracks,
+  getTopTracksSuccess,
+  getTopTracksError,
+  detailTrack,
+  detailTrackSuccess,
+  detailTrackError,
+} = trackSlice.actions;
 
 export default trackSlice.reducer;

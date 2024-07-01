@@ -12,11 +12,19 @@ interface ICardMusic {
   artist: string;
   listeners: string;
   addFavorite: () => void;
+  goDetail: () => void;
 }
 
-const CardMusic = ({url, name, artist, listeners, addFavorite}: ICardMusic) => {
+const CardMusic = ({
+  url,
+  name,
+  artist,
+  listeners,
+  addFavorite,
+  goDetail,
+}: ICardMusic) => {
   return (
-    <Pressable style={styles.container}>
+    <Pressable style={styles.container} onPress={goDetail}>
       <View style={styles.containerInfo}>
         <ImageComponent styles={styles.image} resize={'stretch'} url={url} />
         <View style={styles.containerText}>

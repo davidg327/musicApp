@@ -16,9 +16,11 @@ interface IHomeTemplate {
 const Item = ({
   item,
   addFavoriteTrack,
+  goDetail,
 }: {
   item: ITracks;
   addFavoriteTrack: () => void;
+  goDetail: () => void;
 }) => {
   return (
     <CardMusic
@@ -27,6 +29,7 @@ const Item = ({
       artist={item.artist.name}
       listeners={item.listeners}
       addFavorite={addFavoriteTrack}
+      goDetail={goDetail}
     />
   );
 };
@@ -35,6 +38,10 @@ const ProfileTemplate = ({navigation}: IHomeTemplate) => {
   const {favorites} = useAppSelector(state => state.favorite);
 
   const addTrackToFavorite = () => {};
+
+  const goDetail = (id: string) => {
+    navigation.navigate('Detail', {id: id});
+  };
 
   return (
     <View style={styles.container}>
@@ -57,7 +64,11 @@ const ProfileTemplate = ({navigation}: IHomeTemplate) => {
         list={favorites}
         activeIndex={true}
         renderItem={({item}: {item: ITracks}) => (
-          <Item item={item} addFavoriteTrack={() => addTrackToFavorite()} />
+          <Item
+            item={item}
+            addFavoriteTrack={() => addTrackToFavorite()}
+            goDetail={() => goDetail(item.mbid)}
+          />
         )}
         empty={
           <TextComponent

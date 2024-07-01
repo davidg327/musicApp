@@ -2904,6 +2904,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-native-htmlview@npm:^0.16.5":
+  version: 0.16.5
+  resolution: "@types/react-native-htmlview@npm:0.16.5"
+  dependencies:
+    "@types/react": "*"
+    react-native: "*"
+  checksum: 02e89055b8984b292d4947450601acd49753bd9f8534af0fa611e16547ec6bff3101195b789ad521ef527a97ea4131be36082a9e8d76f3e1f1696b22eeae5462
+  languageName: node
+  linkType: hard
+
 "@types/react-native-vector-icons@npm:^6.4.18":
   version: 6.4.18
   resolution: "@types/react-native-vector-icons@npm:6.4.18"
@@ -3192,6 +3202,7 @@ __metadata:
     "@react-navigation/native-stack": ^6.9.26
     "@reduxjs/toolkit": ^2.2.6
     "@types/react": ^18.2.6
+    "@types/react-native-htmlview": ^0.16.5
     "@types/react-native-vector-icons": ^6.4.18
     "@types/react-test-renderer": ^18.0.0
     babel-jest: ^29.6.3
@@ -8299,7 +8310,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native@npm:0.74.2":
+"react-native@npm:*, react-native@npm:0.74.2":
   version: 0.74.2
   resolution: "react-native@npm:0.74.2"
   dependencies:
