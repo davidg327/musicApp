@@ -21,6 +21,7 @@ const style = StyleSheet.create({
     fontSize: 20,
     fontWeight: '700',
     textAlign: 'center',
+    width: width * 0.7,
   },
   image: {
     width: width * 0.1,

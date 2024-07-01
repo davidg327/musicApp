@@ -6,19 +6,19 @@ const initialState = {
     {id: 2, value: 'spain', title: 'España'},
     {id: 3, value: 'united kingdom', title: 'Inglaterra'},
   ],
-  countrySelect: {
-    id: 1,
-    value: 'germany',
-    title: 'Alemania',
-  },
+  countrySelect: {} as any,
 };
 
 export const countrySlice = createSlice({
   name: 'country',
   initialState,
-  reducers: {},
+  reducers: {
+    changeCountry(state, action) {
+      state.countrySelect = action.payload;
+    },
+  },
 });
 
-export const {} = countrySlice.actions;
+export const {changeCountry} = countrySlice.actions;
 
 export default countrySlice.reducer;

@@ -23,12 +23,22 @@ const style = StyleSheet.create({
     fontWeight: '700',
     textAlign: 'center',
   },
+  containerCountry: {
+    marginTop: 30,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  textCountry: {
+    color: Colors.white,
+    fontSize: 16,
+    fontWeight: '500',
+  },
   textPrincipal: {
     color: Colors.white,
     fontSize: 16,
     fontWeight: '500',
     textAlign: 'center',
-    marginTop: 50,
+    marginTop: 20,
     marginBottom: 30,
   },
   image: {

@@ -7,6 +7,7 @@ import {
   addFavoritesCache,
   cleanFavorite,
 } from '../../state/favorite/reducer.ts';
+import {changeCountry} from '../../state/countries/reducer.ts';
 import Storage from '../../helpers/localStorage';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks.ts';
 import {Colors} from '../../utils/Colors.ts';
@@ -32,19 +33,35 @@ const HomeScreen = ({navigation}: IHomeScreen) => {
     }
   };
 
+  const getCountry = async () => {
+    let countryCache = await Storage.getItem('@country_music');
+    if (countryCache !== null) {
+      dispatch(changeCountry(countryCache));
+    } else {
+      let value = {
+        id: 1,
+        value: 'germany',
+        title: 'Alemania',
+      };
+      Storage.storeData('@country_music', value);
+      dispatch(changeCountry(value));
+    }
+  };
+
   const addFavoriteCache = () => {
     Storage.storeData('@favorite_music', favorites);
     dispatch(cleanFavorite());
   };
 
   useEffect(() => {
-    if (!getTopTracksSuccess) {
+    if (!getTopTracksSuccess && Object.keys(countrySelect).length > 0) {
       dispatch(getTopTracks({value: countrySelect.value, page: 1}));
     }
-  }, []);
+  }, [countrySelect]);
 
   useEffect(() => {
     getFavorites();
+    getCountry();
   }, []);
 
   useEffect(() => {
